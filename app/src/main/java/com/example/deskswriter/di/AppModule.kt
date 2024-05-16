@@ -2,7 +2,6 @@ package com.example.deskswriter.di
 
 import com.desks_writer.domain.usecase.AddFileUseCase
 import com.desks_writer.domain.usecase.GetFileUseCase
-import com.example.deskswriter.presentation.screen.home.HomeViewModel
 import com.example.deskswriter.presentation.screen.home.HomeViewModelFactory
 import dagger.Module
 import dagger.Provides

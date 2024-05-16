@@ -15,20 +15,30 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.desks_writer.domain.medels.FileModel
+import com.desks_writer.domain.usecase.AddFileUseCase
+import com.desks_writer.domain.usecase.GetFileUseCase
 import com.example.deskswriter.R
 import com.example.deskswriter.presentation.screen.BaseIcon
 import com.example.deskswriter.presentation.screen.BaseText
 import com.example.deskswriter.presentation.ui.theme.DarkViolet
 import com.example.deskswriter.presentation.ui.theme.LightViolet
 import com.example.deskswriter.presentation.ui.theme.Violet1
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    homeViewModel: HomeViewModel,
+) {
     val fileListState = homeViewModel.getFiles().collectAsState(initial = listOf()).value
     Box(modifier = modifier) {
         Column {
@@ -45,7 +55,9 @@ fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel) {
             }
         }
         AddButton(modifier = Modifier.align(Alignment.BottomEnd)) {
-            homeViewModel.addFile(FileModel("title", "description", "data"))
+            CoroutineScope(Dispatchers.IO).launch {
+                homeViewModel.addFile(FileModel("title", "description", "data"))
+            }
         }
     }
 }

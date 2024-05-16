@@ -1,7 +1,6 @@
 package com.example.deskswriter.presentation.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -10,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import com.desks_writer.domain.usecase.AddFileUseCase
+import com.desks_writer.domain.usecase.GetFileUseCase
 import com.example.deskswriter.App
 import com.example.deskswriter.presentation.screen.home.HomeScreen
 import com.example.deskswriter.presentation.screen.home.HomeViewModel
@@ -35,7 +36,7 @@ class MainActivity : ComponentActivity() {
             .padding(16.dp)
         setContent {
             DesksWriterTheme {
-                HomeScreen(modifier = boxModifier, homeViewModel = homeViewModel)
+                HomeScreen(modifier = boxModifier, homeViewModel = homeViewModel,)
             }
         }
     }

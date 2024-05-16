@@ -14,7 +14,7 @@ class DataModule(private val context: Context) {
     @Provides
     fun provideDatabase(): CommonDatabase {
         return Room.databaseBuilder(context, CommonDatabase::class.java, "Database")
-            .allowMainThreadQueries().build()
+            .allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }
 
     @Provides
